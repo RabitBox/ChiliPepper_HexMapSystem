@@ -1,9 +1,10 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using ChiliPepper;
 
 /// <summary>
-/// ‚‚³î•ñ•t‚«ƒwƒbƒNƒXÀ•W
+/// é«˜ã•æƒ…å ±ä»˜ããƒ˜ãƒƒã‚¯ã‚¹åº§æ¨™
 /// </summary>
 [System.Serializable]
 public struct HexLocation
@@ -44,7 +45,7 @@ public struct HexLocation
 
 	public List<HexLocation> GetNeighbor()
 	{
-		var neighbor = _coordinates.GetNeighbor();
+		var neighbor = _coordinates.GetNeighbors();
 		List<HexLocation> result = new List<HexLocation>();
 
 		foreach (var item in neighbor)
