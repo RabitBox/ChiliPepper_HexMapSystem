@@ -4,16 +4,35 @@ namespace ChiliPepper
 {
 	public class HexGrid
 	{
+		/// <summary>
+		/// 座標データ
+		/// </summary>
+		protected Dictionary<int, HexCoordinates> _coordinates;
+
+		/// <summary>
+		/// 隣接情報処理
+		/// </summary>
+		protected IHexNeighborResolver _neighborResolver;
+
+		/// <summary>
+		/// 回転処理
+		/// </summary>
+		protected IHexRotateResolver _rotateResolver;
+
+		/// <summary>
+		/// ジェネレータ
+		/// </summary>
+		protected IHexGridGenerator _hexGridGenerator;
+
 		public HexGrid()
 		{
 			_coordinates = new Dictionary<int, HexCoordinates>();
 		}
 
-		protected Dictionary<int, HexCoordinates> _coordinates;
-		protected IHexNeighborResolver _neighborResolver;
-		protected IHexRotateResolver _rotateResolver;
-
 		public Dictionary<int, HexCoordinates> Coordinates => _coordinates;
+		public IHexNeighborResolver HexNeighbor => _neighborResolver;
+		public IHexRotateResolver HexRotate => _rotateResolver;
+		public IHexGridGenerator Generator => _hexGridGenerator;
 	}
 
 	/// <summary>
@@ -36,6 +55,7 @@ namespace ChiliPepper
 				LayoutOrder.Downward => new DownwardRotateResolver(),
 				_ => throw new System.NotImplementedException(),
 			};
+			_hexGridGenerator = new PointyTop.GridGenerator();
 		}
 
 		public HexCoordinates GetNeighbor(HexCoordinates coord, PointyTop.Direction dir)
@@ -62,6 +82,7 @@ namespace ChiliPepper
 				LayoutOrder.Downward => new DownwardRotateResolver(),
 				_ => throw new System.NotImplementedException(),
 			};
+			_hexGridGenerator = new FlatTop.GridGenerator();
 		}
 
 		public HexCoordinates GetNeighbor(HexCoordinates coord, FlatTop.Direction dir)
