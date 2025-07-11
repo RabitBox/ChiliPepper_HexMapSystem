@@ -25,6 +25,11 @@ namespace ChiliPepper
 		protected IHexGridGenerator _hexGridGenerator;
 
 		/// <summary>
+		/// コンバーター
+		/// </summary>
+		protected IHexGridConverter _hexGridConverter;
+
+		/// <summary>
 		/// 経路探索
 		/// </summary>
 		protected IHexGridPathfinding _hexGridPathfinding;
@@ -38,6 +43,7 @@ namespace ChiliPepper
 		public IHexNeighborResolver HexNeighbor => _neighborResolver;
 		public IHexRotateResolver HexRotate => _rotateResolver;
 		public IHexGridGenerator Generator => _hexGridGenerator;
+		public IHexGridConverter Converter => _hexGridConverter;
 		public IHexGridPathfinding Pathfinding => _hexGridPathfinding;
 	}
 
@@ -62,6 +68,12 @@ namespace ChiliPepper
 				_ => throw new System.NotImplementedException(),
 			};
 			_hexGridGenerator = new PointyTop.GridGenerator();
+			_hexGridConverter = order switch
+			{
+				LayoutOrder.Upward => new PointyTop.Upward.Converter(),
+				LayoutOrder.Downward => new PointyTop.Downward.Converter(),
+				_ => throw new System.NotImplementedException(),
+			};
 			_hexGridPathfinding = new ASter.Pathfinding();
 		}
 
@@ -90,6 +102,12 @@ namespace ChiliPepper
 				_ => throw new System.NotImplementedException(),
 			};
 			_hexGridGenerator = new FlatTop.GridGenerator();
+			_hexGridConverter = order switch
+			{
+				LayoutOrder.Upward => new FlatTop.Upward.Converter(),
+				LayoutOrder.Downward => new FlatTop.Downward.Converter(),
+				_ => throw new System.NotImplementedException(),
+			};
 			_hexGridPathfinding = new ASter.Pathfinding();
 		}
 
