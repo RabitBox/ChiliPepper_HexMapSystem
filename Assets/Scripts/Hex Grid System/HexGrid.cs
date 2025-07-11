@@ -24,6 +24,11 @@ namespace ChiliPepper
 		/// </summary>
 		protected IHexGridGenerator _hexGridGenerator;
 
+		/// <summary>
+		/// 経路探索
+		/// </summary>
+		protected IHexGridPathfinding _hexGridPathfinding;
+
 		public HexGrid()
 		{
 			_coordinates = new Dictionary<int, HexCoordinates>();
@@ -33,6 +38,7 @@ namespace ChiliPepper
 		public IHexNeighborResolver HexNeighbor => _neighborResolver;
 		public IHexRotateResolver HexRotate => _rotateResolver;
 		public IHexGridGenerator Generator => _hexGridGenerator;
+		public IHexGridPathfinding Pathfinding => _hexGridPathfinding;
 	}
 
 	/// <summary>
@@ -56,6 +62,7 @@ namespace ChiliPepper
 				_ => throw new System.NotImplementedException(),
 			};
 			_hexGridGenerator = new PointyTop.GridGenerator();
+			_hexGridPathfinding = new ASter.Pathfinding();
 		}
 
 		public HexCoordinates GetNeighbor(HexCoordinates coord, PointyTop.Direction dir)
@@ -83,6 +90,7 @@ namespace ChiliPepper
 				_ => throw new System.NotImplementedException(),
 			};
 			_hexGridGenerator = new FlatTop.GridGenerator();
+			_hexGridPathfinding = new ASter.Pathfinding();
 		}
 
 		public HexCoordinates GetNeighbor(HexCoordinates coord, FlatTop.Direction dir)
