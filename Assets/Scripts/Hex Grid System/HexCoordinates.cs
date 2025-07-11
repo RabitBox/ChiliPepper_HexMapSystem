@@ -82,7 +82,7 @@ namespace ChiliPepper
 		public static int Distance(HexCoordinates a, HexCoordinates b)
 		{
 			var vec = a - b;
-			return (Mathf.Abs(vec._q) + Mathf.Abs(vec._q + vec._r) + Mathf.Abs(vec._r)) / 2;
+			return (Math.Abs(vec._q) + Math.Abs(vec._q + vec._r) + Math.Abs(vec._r)) / 2;
 		}
 	}
 }

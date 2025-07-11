@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace ChiliPepper
 {
@@ -19,7 +19,7 @@ namespace ChiliPepper
 			{
 				public (float x, float y) ToWorld(int col, int row, float radius = 1f)
 				{
-					float width = Mathf.Sqrt(3f) * radius;
+					float width = (float)Math.Sqrt(3f) * radius;
 					float height = 1.5f * radius;
 
 					float x = width * col + (row * width * 0.5f);
@@ -42,7 +42,7 @@ namespace ChiliPepper
 			{
 				public (float x, float y) ToWorld(int col, int row, float radius = 1f)
 				{
-					float width = Mathf.Sqrt(3f) * radius;
+					float width = (float)Math.Sqrt(3f) * radius;
 					float height = 1.5f * radius;
 
 					float x = width * col + (row * width * 0.5f);
@@ -62,14 +62,14 @@ namespace ChiliPepper
 		namespace Upward
 		{
 			/// <summary>
-			/// FlatTopレイアウトの座ホ湯に変換するクラス
+			/// FlatTopレイアウトの座標に変換するクラス
 			/// </summary>
 			public class Converter : IHexGridConverter
 			{
 				public (float x, float y) ToWorld(int col, int row, float radius = 1f)
 				{
 					float horiz = 1.5f * radius;
-					float vert = Mathf.Sqrt(3f) * radius;
+					float vert = (float)Math.Sqrt(3f) * radius;
 
 					float x = horiz * col;
 					float y = vert * row + (col * vert * 0.5f);
@@ -85,14 +85,14 @@ namespace ChiliPepper
 		namespace Downward
 		{
 			/// <summary>
-			/// FlatTopレイアウトの座ホ湯に変換するクラス
+			/// FlatTopレイアウトの座標に変換するクラス
 			/// </summary>
 			public class Converter : IHexGridConverter
 			{
 				public (float x, float y) ToWorld(int col, int row, float radius = 1f)
 				{
 					float horiz = 1.5f * radius;
-					float vert = Mathf.Sqrt(3f) * radius;
+					float vert = (float)Math.Sqrt(3f) * radius;
 
 					float x = horiz * col;
 					float y = vert * row + (col * vert * 0.5f);
