@@ -36,7 +36,11 @@ namespace ChiliPepper
 
 		#region Operator
 		public static bool operator ==(HexLocation a, HexLocation b)
-			=> (a._coord.Q == b._coord.Q) && (a._coord.R == b._coord.R) && (a._height == b._height);
+		{
+			if (ReferenceEquals(a, b)) return true;
+			if (ReferenceEquals(a, null) || ReferenceEquals(b, null)) return false;
+			return (a._coord.Q == b._coord.Q) && (a._coord.R == b._coord.R) && (a._height == b._height);
+		}
 
 		public static bool operator !=(HexLocation a, HexLocation b)
 			=> !(a == b);
