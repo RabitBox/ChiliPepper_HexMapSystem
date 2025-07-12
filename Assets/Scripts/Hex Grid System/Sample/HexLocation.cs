@@ -7,7 +7,7 @@ namespace ChiliPepper
 	/// 高さ情報付きヘックス座標
 	/// </summary>
 	[System.Serializable]
-	public class HexLocation : CHexCoord
+	public class HexLocation : Custom.HexCoord
 	{
 		#region Field
 		/// <summary>
@@ -50,7 +50,7 @@ namespace ChiliPepper
 
 		public override int GetHashCode() => _coord.GetHashCode();
 
-		public override bool IsValidStep(CHexCoord obj)
+		public override bool IsValidStep(Custom.HexCoord obj)
 		{
 			if (obj is HexLocation other)
 			{
