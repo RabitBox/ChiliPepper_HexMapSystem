@@ -70,13 +70,13 @@ namespace ChiliPepper
 		public List<HexCoordinates> GetNeighbors()
 		{
 			return new List<HexCoordinates> {
-			new HexCoordinates(_q+1, _r  ),
-			new HexCoordinates(_q+1, _r-1),
-			new HexCoordinates(  _q, _r-1),
-			new HexCoordinates(_q-1, _r  ),
-			new HexCoordinates(_q-1, _r+1),
-			new HexCoordinates(  _q, _r+1)
-		};
+				new HexCoordinates(_q+1, _r  ),
+				new HexCoordinates(_q+1, _r-1),
+				new HexCoordinates(  _q, _r-1),
+				new HexCoordinates(_q-1, _r  ),
+				new HexCoordinates(_q-1, _r+1),
+				new HexCoordinates(  _q, _r+1)
+			};
 		}
 
 		public static int Distance(HexCoordinates a, HexCoordinates b)

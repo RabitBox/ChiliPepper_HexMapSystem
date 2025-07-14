@@ -39,12 +39,14 @@ namespace ChiliPepper
 			_coordinates = new Dictionary<int, HexCoordinates>();
 		}
 
+		#region Props
 		public Dictionary<int, HexCoordinates> Coordinates => _coordinates;
 		public IHexNeighborResolver HexNeighbor => _neighborResolver;
 		public IHexRotateResolver HexRotate => _rotateResolver;
 		public IHexGridGenerator Generator => _hexGridGenerator;
 		public IHexGridConverter Converter => _hexGridConverter;
 		public IHexGridPathfinding Pathfinding => _hexGridPathfinding;
+		#endregion
 	}
 
 	/// <summary>
