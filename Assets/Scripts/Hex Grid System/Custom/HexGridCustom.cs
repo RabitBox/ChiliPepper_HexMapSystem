@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ChiliPepper.Custom
 {
 	public class HexGrid<T>
-		where T : HexCoord
+		where T : IHexCell
 	{
 		/// <summary>
 		/// 座標データ
@@ -34,6 +34,10 @@ namespace ChiliPepper.Custom
 		public HexGrid()
 		{
 			_coords = new Dictionary<int, T>();
+			_neighborResolver = new PointyTop.Upward.NeighborResolver();
+			_rotateResolver = new UpwardRotateResolver();
+			_hexGridConverter = new PointyTop.Upward.Converter();
+			_hexGridPathfinding = new ASter.Pathfinding<T>();
 		}
 
 		#region Props

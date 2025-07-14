@@ -3,7 +3,7 @@
 namespace ChiliPepper.Custom
 {
 	public interface IHexGridPathfinding<T>
-		where T : HexCoord
+		where T : IHexCell
 	{
 		/// <summary>
 		/// 経路探索
@@ -18,6 +18,7 @@ namespace ChiliPepper.Custom
 	namespace ASter
 	{
 		public class ANode<T>
+			where T : IHexCell
 		{
 			/// <summary>
 			/// 親ノード
@@ -53,28 +54,29 @@ namespace ChiliPepper.Custom
 			}
 		}
 
-		public class Pathfinding<T>
-			where T : HexCoord, IHexGridPathfinding<T>
+		public class Pathfinding<T> 
+			: IHexGridPathfinding<T>
+			where T : IHexCell
 		{
-			List<T> FindPath(
+			public List<T> FindPath(
 				in Dictionary<int, T> locations,
 				T start,
 				T end)
 			{
 				// どちらかがマップ情報に格納されていなかった場合、即座に処理を抜ける
-				if (!locations.ContainsKey(start.GetHashCode()) || !locations.ContainsKey(end.GetHashCode()))
+				if (!locations.ContainsKey(start.HashCode) || !locations.ContainsKey(end.HashCode))
 				{
 					return null;
 				}
 
-				ANode<T> node_start = new ANode<T>(null, locations[start.GetHashCode()]);
-				ANode<T> node_end = new ANode<T>(null, locations[end.GetHashCode()]);
+				ANode<T> node_start = new ANode<T>(null, locations[start.HashCode]);
+				ANode<T> node_end = new ANode<T>(null, locations[end.HashCode]);
 				ANode<T> node_current = null;
 				Dictionary<int, ANode<T>> open_list = new Dictionary<int, ANode<T>>();
 				Dictionary<int, ANode<T>> close_list = new Dictionary<int, ANode<T>>();
 				List<ANode<T>> children = new List<ANode<T>>();
 
-				open_list.Add(node_start.Value.GetHashCode(), node_start);
+				open_list.Add(node_start.Value.HashCode, node_start);
 
 				while (open_list.Count > 0)
 				{
@@ -97,7 +99,7 @@ namespace ChiliPepper.Custom
 
 					// 見つけたノードをクローズリストへ移動
 					{
-						var curren_hash = node_current.Value.GetHashCode();
+						var curren_hash = node_current.Value.HashCode;
 						open_list.Remove(curren_hash);
 						close_list.Add(curren_hash, node_current);
 					}
@@ -105,7 +107,7 @@ namespace ChiliPepper.Custom
 					//----------------------------------------
 					// 終了チェック
 					//----------------------------------------
-					if (node_current.Value == node_end.Value)
+					if (node_current.Value.Coordinates == node_end.Value.Coordinates)
 					{
 						return GetPathToRoot(node_current);
 					}
@@ -115,7 +117,7 @@ namespace ChiliPepper.Custom
 					//----------------------------------------
 					children.Clear();
 
-					foreach (var neighbor in node_current.Value.GetNeighbors())
+					foreach (var neighbor in node_current.Value.Coordinates.GetNeighbors())
 					{
 						var hash = neighbor.GetHashCode();
 
@@ -141,7 +143,7 @@ namespace ChiliPepper.Custom
 					foreach (var child in children)
 					{
 						// ハッシュ値を算出
-						var hash = child.Value.GetHashCode();
+						var hash = child.Value.HashCode;
 
 						// 既にリストに入っているものは上書きしない
 						if (open_list.ContainsKey(hash) || close_list.ContainsKey(hash))
@@ -150,7 +152,7 @@ namespace ChiliPepper.Custom
 						}
 
 						child.Cost = node_current.Cost + 1;
-						child.Heuristic = HexCoordinates.Distance(child.Value.Coord, node_end.Value.Coord);
+						child.Heuristic = HexCoordinates.Distance(child.Value.Coordinates, node_end.Value.Coordinates);
 						open_list.Add(hash, child);
 					}
 				}
