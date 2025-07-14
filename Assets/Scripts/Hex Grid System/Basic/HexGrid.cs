@@ -65,8 +65,8 @@ namespace ChiliPepper
 			};
 			_rotateResolver = order switch
 			{
-				LayoutOrder.Upward => new UpwardRotateResolver(),
-				LayoutOrder.Downward => new DownwardRotateResolver(),
+				LayoutOrder.Upward => new Upward.RotateResolver(),
+				LayoutOrder.Downward => new Downward.RotateResolver(),
 				_ => throw new System.NotImplementedException(),
 			};
 			_hexGridGenerator = new PointyTop.GridGenerator();
@@ -99,8 +99,8 @@ namespace ChiliPepper
 			};
 			_rotateResolver = order switch
 			{
-				LayoutOrder.Upward => new UpwardRotateResolver(),
-				LayoutOrder.Downward => new DownwardRotateResolver(),
+				LayoutOrder.Upward => new Upward.RotateResolver(),
+				LayoutOrder.Downward => new Downward.RotateResolver(),
 				_ => throw new System.NotImplementedException(),
 			};
 			_hexGridGenerator = new FlatTop.GridGenerator();

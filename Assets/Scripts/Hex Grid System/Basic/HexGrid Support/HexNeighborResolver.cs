@@ -21,10 +21,10 @@
 				{
 					return dir switch
 					{
-						0 => new HexCoordinates(coord.Q, coord.R + 1),      // 右上
+						0 => new HexCoordinates(coord.Q    , coord.R + 1),  // 右上
 						1 => new HexCoordinates(coord.Q + 1, coord.R),      // 右
 						2 => new HexCoordinates(coord.Q + 1, coord.R - 1),  // 右下
-						3 => new HexCoordinates(coord.Q, coord.R - 1),      // 左下
+						3 => new HexCoordinates(coord.Q    , coord.R - 1),  // 左下
 						4 => new HexCoordinates(coord.Q - 1, coord.R),      // 左
 						5 => new HexCoordinates(coord.Q - 1, coord.R + 1),  // 左上
 						_ => throw new System.NotImplementedException(),
@@ -47,10 +47,10 @@
 					{
 						0 => new HexCoordinates(coord.Q + 1, coord.R - 1),  // 右上
 						1 => new HexCoordinates(coord.Q + 1, coord.R),      // 右
-						2 => new HexCoordinates(coord.Q, coord.R + 1),      // 右下
+						2 => new HexCoordinates(coord.Q    , coord.R + 1),  // 右下
 						3 => new HexCoordinates(coord.Q - 1, coord.R + 1),  // 左下
 						4 => new HexCoordinates(coord.Q - 1, coord.R),      // 左
-						5 => new HexCoordinates(coord.Q, coord.R - 1),      // 左上
+						5 => new HexCoordinates(coord.Q    , coord.R - 1),  // 左上
 						_ => throw new System.NotImplementedException(),
 					};
 				}
@@ -71,10 +71,10 @@
 				{
 					return dir switch
 					{
-						0 => new HexCoordinates(coord.Q, coord.R + 1),      // 上
+						0 => new HexCoordinates(coord.Q    , coord.R + 1),  // 上
 						1 => new HexCoordinates(coord.Q + 1, coord.R),      // 右上
 						2 => new HexCoordinates(coord.Q + 1, coord.R - 1),  // 右下
-						3 => new HexCoordinates(coord.Q, coord.R - 1),      // 下
+						3 => new HexCoordinates(coord.Q    , coord.R - 1),  // 下
 						4 => new HexCoordinates(coord.Q - 1, coord.R),      // 左下
 						5 => new HexCoordinates(coord.Q - 1, coord.R + 1),  // 左上
 						_ => throw new System.NotImplementedException(),
@@ -94,10 +94,10 @@
 				{
 					return dir switch
 					{
-						0 => new HexCoordinates(coord.Q, coord.R - 1),      // 上
+						0 => new HexCoordinates(coord.Q    , coord.R - 1),  // 上
 						1 => new HexCoordinates(coord.Q + 1, coord.R - 1),  // 右上
 						2 => new HexCoordinates(coord.Q + 1, coord.R),      // 右下
-						3 => new HexCoordinates(coord.Q, coord.R + 1),      // 下
+						3 => new HexCoordinates(coord.Q    , coord.R + 1),  // 下
 						4 => new HexCoordinates(coord.Q - 1, coord.R + 1),  // 左下
 						5 => new HexCoordinates(coord.Q - 1, coord.R),      // 左上
 						_ => throw new System.NotImplementedException(),

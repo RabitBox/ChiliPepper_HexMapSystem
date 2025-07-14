@@ -35,7 +35,7 @@ namespace ChiliPepper.Custom
 		{
 			_coords = new Dictionary<int, T>();
 			_neighborResolver = new PointyTop.Upward.NeighborResolver();
-			_rotateResolver = new UpwardRotateResolver();
+			_rotateResolver = new Upward.RotateResolver();
 			_hexGridConverter = new PointyTop.Upward.Converter();
 			_hexGridPathfinding = new ASter.Pathfinding<T>();
 		}

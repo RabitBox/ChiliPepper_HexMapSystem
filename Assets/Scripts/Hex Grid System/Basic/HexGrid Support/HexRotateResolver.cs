@@ -9,59 +9,65 @@
 		public HexCoordinates Rotate(HexCoordinates coord, HexCoordinates center, Rotate rotate);
 	}
 
-	/// <summary>
-	/// Upward
-	/// </summary>
-	public class UpwardRotateResolver : IHexRotateResolver
+	namespace Upward
 	{
-		HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, Rotate rotate)
+		/// <summary>
+		/// Upward
+		/// </summary>
+		public class RotateResolver : IHexRotateResolver
 		{
-			return rotate switch
+			HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, Rotate rotate)
 			{
-				Rotate.Right => new HexCoordinates(-coord.S, -coord.Q),
-				Rotate.Left => new HexCoordinates(-coord.R, -coord.S),
-				_ => throw new System.NotImplementedException(),
-			};
-		}
+				return rotate switch
+				{
+					Rotate.Right => new HexCoordinates(-coord.S, -coord.Q),
+					Rotate.Left => new HexCoordinates(-coord.R, -coord.S),
+					_ => throw new System.NotImplementedException(),
+				};
+			}
 
-		HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, HexCoordinates center, Rotate rotate)
-		{
-			var offset = coord - center;
-			offset = rotate switch
+			HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, HexCoordinates center, Rotate rotate)
 			{
-				Rotate.Right => new HexCoordinates(-offset.S, -offset.Q),
-				Rotate.Left => new HexCoordinates(-offset.R, -offset.S),
-				_ => throw new System.NotImplementedException(),
-			};
-			return offset + center;
+				var offset = coord - center;
+				offset = rotate switch
+				{
+					Rotate.Right => new HexCoordinates(-offset.S, -offset.Q),
+					Rotate.Left => new HexCoordinates(-offset.R, -offset.S),
+					_ => throw new System.NotImplementedException(),
+				};
+				return offset + center;
+			}
 		}
 	}
 
-	/// <summary>
-	/// Downward
-	/// </summary>
-	public class DownwardRotateResolver : IHexRotateResolver
+	namespace Downward
 	{
-		HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, Rotate rotate)
+		/// <summary>
+		/// Downward
+		/// </summary>
+		public class RotateResolver : IHexRotateResolver
 		{
-			return rotate switch
+			HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, Rotate rotate)
 			{
-				Rotate.Right => new HexCoordinates(-coord.R, -coord.S),
-				Rotate.Left => new HexCoordinates(-coord.S, -coord.Q),
-				_ => throw new System.NotImplementedException(),
-			};
-		}
+				return rotate switch
+				{
+					Rotate.Right => new HexCoordinates(-coord.R, -coord.S),
+					Rotate.Left => new HexCoordinates(-coord.S, -coord.Q),
+					_ => throw new System.NotImplementedException(),
+				};
+			}
 
-		HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, HexCoordinates center, Rotate rotate)
-		{
-			var offset = coord - center;
-			offset = rotate switch
+			HexCoordinates IHexRotateResolver.Rotate(HexCoordinates coord, HexCoordinates center, Rotate rotate)
 			{
-				Rotate.Right => new HexCoordinates(-coord.R, -coord.S),
-				Rotate.Left => new HexCoordinates(-coord.S, -coord.Q),
-				_ => throw new System.NotImplementedException(),
-			};
-			return offset + center;
+				var offset = coord - center;
+				offset = rotate switch
+				{
+					Rotate.Right => new HexCoordinates(-coord.R, -coord.S),
+					Rotate.Left => new HexCoordinates(-coord.S, -coord.Q),
+					_ => throw new System.NotImplementedException(),
+				};
+				return offset + center;
+			}
 		}
 	}
 }
