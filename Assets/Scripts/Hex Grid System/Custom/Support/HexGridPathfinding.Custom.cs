@@ -17,7 +17,7 @@ namespace ChiliPepper.Custom
 
 	namespace ASter
 	{
-		public class ANode<T>
+		internal class ANode<T>
 			where T : IHexCell
 		{
 			/// <summary>
@@ -59,18 +59,18 @@ namespace ChiliPepper.Custom
 			where T : IHexCell
 		{
 			public List<T> FindPath(
-				in Dictionary<int, T> locations,
+				in Dictionary<int, T> gridCells,
 				T start,
 				T end)
 			{
 				// どちらかがマップ情報に格納されていなかった場合、即座に処理を抜ける
-				if (!locations.ContainsKey(start.HashCode) || !locations.ContainsKey(end.HashCode))
+				if (!gridCells.ContainsKey(start.HashCode) || !gridCells.ContainsKey(end.HashCode))
 				{
 					return null;
 				}
 
-				ANode<T> node_start = new ANode<T>(null, locations[start.HashCode]);
-				ANode<T> node_end = new ANode<T>(null, locations[end.HashCode]);
+				ANode<T> node_start = new ANode<T>(null, gridCells[start.HashCode]);
+				ANode<T> node_end = new ANode<T>(null, gridCells[end.HashCode]);
 				ANode<T> node_current = null;
 				Dictionary<int, ANode<T>> open_list = new Dictionary<int, ANode<T>>();
 				Dictionary<int, ANode<T>> close_list = new Dictionary<int, ANode<T>>();
@@ -122,16 +122,16 @@ namespace ChiliPepper.Custom
 						var hash = neighbor.GetHashCode();
 
 						// ハッシュが一致するか調べる
-						if (!locations.ContainsKey(hash))
+						if (!gridCells.ContainsKey(hash))
 						{
 							continue;
 						}
-						if (!locations[hash].IsValidStep(node_current.Value))
+						if (!gridCells[hash].IsValidStep(node_current.Value))
 						{
 							continue;	// 隣接条件を満たせていない
 						}
 
-						var target = locations[hash];
+						var target = gridCells[hash];
 
 						// childrenに追加
 						children.Add(new ANode<T>(node_current, target));
