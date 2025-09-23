@@ -14,7 +14,7 @@
 // 3. This notice may not be removed or altered from any source distribution.
 using System.Collections.Generic;
 
-namespace ChiliPepper
+namespace RVSpiceKit.ChiliPepper
 {
 	/// <summary>
 	/// 経路探索アルゴリズム
