@@ -15,7 +15,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RVSpiceKit.ChiliPepper
+namespace RV.SpiceKit.ChiliPepper
 {
 	/// <summary>
 	/// 指定した範囲の軸座標情報を出力

@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RVSpiceKit.ChiliPepper
+namespace RV.SpiceKit.ChiliPepper
 {
 	/// <summary>
 	/// 軸座標
